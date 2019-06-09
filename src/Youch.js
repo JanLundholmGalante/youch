@@ -17,7 +17,10 @@ const cookie = require('cookie')
 const VIEW_PATH = './error.compiled.mustache'
 const startingSlashRegex = /\\|\//
 
-const viewTemplate = fs.readFileSync(path.join(__dirname, VIEW_PATH), 'utf-8')
+// const viewTemplate = fs.readFileSync(path.join(__dirname, VIEW_PATH), 'utf-8')
+const modulePath = path.dirname(require.resolve("youch"))
+const viewTemplate = fs.readFileSync(path.join(modulePath, VIEW_PATH), 'utf-8')
+
 
 class Youch {
   constructor (error, request) {
