@@ -14,12 +14,15 @@ const path = require('path')
 const stackTrace = require('stack-trace')
 const fs = require('fs')
 const cookie = require('cookie')
+const requireResolve = require('require-resolve')
 const VIEW_PATH = './error.compiled.mustache'
 const startingSlashRegex = /\\|\//
 
-const modulePath = path.dirname(require.resolve("youch"))
-const viewTemplate = fs.readFileSync(path.join(modulePath, VIEW_PATH), 'utf-8')
+const localFilePath = requireResolve(path.join(__dirname, VIEW_PATH))
+const nodeModuleFilePath = requireResolve('youch/src', VIEW_PATH) // Resolve a node module file
+const filePath = localFilePath || nodeModuleFilePath
 
+const viewTemplate = fs.readFileSync(filePath.src, 'utf-8')
 
 class Youch {
   constructor (error, request) {

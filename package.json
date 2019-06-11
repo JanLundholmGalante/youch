@@ -1,5 +1,5 @@
 {
-  "name": "youch",
+  "name": "@tcne/web-youch-fork",
   "version": "2.0.10",
   "description": "HTML Pretty error stack viewer",
   "main": "src/Youch.js",
@@ -12,7 +12,7 @@
   "scripts": {
     "pretest": "npm run lint",
     "prepublishOnly": "npm run build",
-    "build": "node bin/compile.js",
+    "build": "node bin/compile.js --inspect-brk",
     "test": "npm run build && node test/youch.spec.js",
     "lint": "standard"
   },
@@ -34,7 +34,8 @@
   "dependencies": {
     "cookie": "^0.3.1",
     "mustache": "^3.0.0",
-    "stack-trace": "0.0.10"
+    "stack-trace": "0.0.10",
+    "require-resolve": "^0.0.2"
   },
   "repository": {
     "type": "git",
@@ -49,7 +50,9 @@
     "url": "https://github.com/poppinss/youch/issues"
   },
   "standard": {
-    "ignore": ["static"]
+    "ignore": [
+      "static"
+    ]
   },
   "homepage": "https://github.com/poppinss/youch#readme"
 }
